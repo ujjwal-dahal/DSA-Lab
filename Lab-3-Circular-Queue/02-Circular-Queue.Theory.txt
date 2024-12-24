@@ -1,0 +1,38 @@
+Theory of Circular Queue
+
+-> A circular queue is a type of queue in which the last position is connected back to the first position to form a circle. 
+-> It is an improved version of a linear queue.
+-> This structure efficiently utilizes the available space by reusing the empty spaces created after a few elements are dequeued.
+
+=> Key Points About Circular Queue:
+
+1. Structure:
+
+It uses two pointers:
+
+Front: Points to the first element.
+Rear: Points to the last element.
+
+-> The queue's positions wrap around like a circle when the maximum size is reached.
+
+
+2. How It Works:
+
+When the rear reaches the end of the queue, it moves to the beginning if there is free space. 
+This avoids the "wastage" of space found in a normal queue.
+
+3. Operations:
+
+A. Enqueue (Insert): 
+-> Adds an element at the rear.
+If the rear is at the end of the array, it moves to the first index (if space is available).
+
+B. Dequeue (Remove): 
+-> Removes an element from the front.
+When an element is removed, the front pointer moves forward, and when it reaches the end, it wraps back to the start.
+
+C. IsFull: Checks if the queue is full.
+
+D. IsEmpty: Checks if the queue is empty.
+
+E. Display: Shows all elements in the queue.

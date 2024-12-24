@@ -1,0 +1,36 @@
+
+Algorithm for Circular Queue
+
+
+1. Start: Initialize the queue with front = -1 and rear = -1. This means the queue is empty.
+
+2. Enqueue (Insert Element):
+  Step 1: Check if the queue is full.
+    If (rear + 1) % max == front, the queue is full. Stop and display a message.
+  Step 2: If the queue is empty (front == -1), set front = 0 and rear = 0.
+  Step 3: Otherwise, update the rear as rear = (rear + 1) % max.
+  Step 4: Add the new element at queue[rear].
+
+3. Dequeue (Remove Element):
+
+  Step 1: Check if the queue is empty.
+    If front == -1, the queue is empty. Stop and display a message.
+  Step 2: Get the element at queue[front] (the front element to be removed).
+  Step 3: If there is only one element (front == rear), reset the queue by setting front = -1 and rear = -1.
+  Step 4: Otherwise, update the front as front = (front + 1) % max.
+
+4. Display Front Element:
+
+  Step 1: Check if the queue is empty.
+    If front == -1, display a message that the queue is empty.
+  Step 2: Otherwise, display the element at queue[front].
+
+5. Display All Elements:
+
+  Step 1: Check if the queue is empty.
+    If front == -1, display a message that the queue is empty.
+  Step 2: If not empty, use a loop to print elements from front to rear circularly:
+    Start from i = front and display queue[i].
+    Move to the next position using (i + 1) % max until i == rear.
+  
+6. Stop: End the program or repeat operations as needed.
