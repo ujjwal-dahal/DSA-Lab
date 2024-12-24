@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Ujjwal Dahal/Desktop/DSA-Lab/Lab-1",
-      "program": "c:/Users/Ujjwal Dahal/Desktop/DSA-Lab/Lab-1/build/Debug/outDebug",
+      "cwd": "e:/0000-My Latest Daily Task/02-Fourth Semester Lab/DSA LAB/Lab-3-Circular-Queue",
+      "program": "e:/0000-My Latest Daily Task/02-Fourth Semester Lab/DSA LAB/Lab-3-Circular-Queue/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
