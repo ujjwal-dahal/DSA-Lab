@@ -1,0 +1,45 @@
+Algorithm
+1. Insert at the Beginning
+Objective: Insert a new node at the start of the linked list.
+
+Algorithm:
+
+Allocate memory for a new node using malloc().
+Assign the input value to the new node's data field.
+Set the new node's next to point to the current head.
+Update the head pointer to the new node.
+Time Complexity: O(1) (Constant time as it doesn't require traversal)
+
+2. Delete the Last Node
+Objective: Remove the last node from the linked list.
+
+Algorithm:
+
+If the list is empty (head == NULL), print an error message.
+If there is only one node, free that node and set head = NULL.
+Otherwise, traverse the list to find the second-last node.
+Set the second-last node's next pointer to NULL.
+Free the memory of the last node.
+Time Complexity: O(n) (Requires traversal to the second-last node)
+
+3. Traverse and Display
+Objective: Print all elements in the linked list.
+
+Algorithm:
+
+If the list is empty, print an appropriate message.
+Start from the head and traverse through each node.
+Print the data value of each node until the end (NULL) is reached.
+Time Complexity: O(n)
+
+4. Search for an Element
+Objective: Find the position of a specific value in the list.
+
+Algorithm:
+
+Initialize a counter for the position.
+Traverse the list, comparing each node’s data with the search value.
+If found, print the position.
+If the end of the list is reached without finding the value, print "Not Found".
+Time Complexity: O(n)
+
