@@ -1,0 +1,59 @@
+Linked List भनेको के हो?
+Linked List एक linear data structure हो जुन nodes को श्रृंखलाबाट बनेको हुन्छ। हरेक node मा दुई वटा भागहरू हुन्छन्:
+
+Data – जुन actual value अथवा information राख्छ।
+Pointer/Link – जुन अर्को node को address राख्छ।
+यसले contiguous memory allocation प्रयोग गर्दैन, बरु dynamic memory allocation प्रयोग गर्छ।
+
+Types of Linked List (प्रकारहरू):
+Singly Linked List (एकल लिङ्क लिस्ट):
+
+हरेक node सँग data र next pointer हुन्छ।
+Pointer ले अर्को node तर्फ मात्र इशारा गर्छ।
+अन्तिम node को pointer NULL हुन्छ।
+Example: 1 -> 2 -> 3 -> NULL
+Doubly Linked List (दोहोरो लिङ्क लिस्ट):
+
+हरेक node सँग data, next pointer र previous pointer हुन्छ।
+Forward र backward दुबै दिशा तर्फ traversal गर्न सकिन्छ।
+Example: NULL <- 1 <-> 2 <-> 3 -> NULL
+Circular Linked List (परिक्रमण लिङ्क लिस्ट):
+
+अन्तिम node को pointer ले पहिलो node लाई point गर्छ।
+यसले continuous loop जस्तै structure बनाउँछ।
+Example: 1 -> 2 -> 3 -> 1 (loop)
+Circular Doubly Linked List (परिक्रमण दोहोरो लिङ्क लिस्ट):
+
+Doubly linked list जहाँ अन्तिम node को next pointer ले पहिलो node र पहिलो node को previous pointer ले अन्तिम node लाई point गर्छ।
+Example: 1 <-> 2 <-> 3 <-> 1 (loop)
+Linked List का विशेषताहरू (Features):
+Dynamic Size: Memory allocation dynamic हुन्छ, जति चाहिन्छ त्यति node थप्न सकिन्छ।
+Efficient Insertion/Deletion: Array भन्दा सजिलो र efficient रूपमा element insert र delete गर्न सकिन्छ।
+Non-Contiguous Memory: Nodes memory मा scattered हुन्छन्, contiguous memory को आवश्यकता पर्दैन।
+Linked List का कमजोरीहरू (Disadvantages):
+Slow Access: Random access सम्भव छैन, sequential access मात्र हुन्छ।
+Extra Memory: Pointer/Link ले अतिरिक्त memory consume गर्छ।
+Complex Implementation: Array भन्दा थोरै complex हुन्छ implement गर्न।
+Linked List का Operations (अपरेसनहरू):
+Insertion (घुसाउनु):
+
+Beginning: पहिलो node मा insert गर्नु।
+End: अन्त्यमा node थप्नु।
+Specific Position: निर्दिष्ट position मा insert गर्नु।
+Deletion (हटाउनु):
+
+Beginning: पहिलो node हटाउनु।
+End: अन्तिम node हटाउनु।
+Specific Position: निर्दिष्ट node हटाउनु।
+Traversal (यात्रा गर्नु):
+
+List भित्र sequentially elements visit गर्नु।
+Search (खोजी):
+
+कुनै विशेष value लाई search गर्नु।
+Advantages over Array (Array भन्दा फाइदा):
+Size dynamically adjust हुन्छ।
+Insert/Delete गर्न सजिलो हुन्छ किनभने shift गर्नु पर्दैन।
+Disadvantages over Array (Array भन्दा बेफाइदा):
+Random access सम्भव छैन।
+Extra memory pointers का लागि चाहिन्छ।
