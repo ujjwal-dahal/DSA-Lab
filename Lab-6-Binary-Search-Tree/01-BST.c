@@ -25,140 +25,137 @@ eg : 10 , 20 , 15 , 5 , 30 , 8 , 3
 #include <stdio.h>
 #include <stdlib.h>
 
-// BST node structure
-struct Node
+// Structure of a BST node
+struct node
 {
-  int data;           // Node मा data राख्ने
-  struct Node *left;  // Left child
-  struct Node *right; // Right child
+  int key;                   // Value of the node
+  struct node *left, *right; // Left and right children
 };
 
-// नयाँ node create गर्ने function
-struct Node *createNode(int data)
+typedef struct node bst;
+
+// Function to create a new node
+bst *newNode(int item)
 {
-  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node)); // Dynamic memory allocate
-  newNode->data = data;
-  newNode->left = NULL;
-  newNode->right = NULL;
-  return newNode;
+  bst *temp = (bst *)malloc(sizeof(bst));
+  temp->key = item;                // Assign the key value
+  temp->left = temp->right = NULL; // Initialize children as NULL
+  return temp;
 }
 
-// BST मा node insert गर्ने function
-struct Node *insert(struct Node *root, int data)
+// Function for Inorder Traversal (Left -> Root -> Right)
+void inorder(bst *root)
+{
+  if (root != NULL)
+  {
+    inorder(root->left);         // Visit left subtree
+    printf("%d -> ", root->key); // Print root value
+    inorder(root->right);        // Visit right subtree
+  }
+}
+
+// Function for Preorder Traversal (Root -> Left -> Right)
+void preorder(bst *root)
+{
+  if (root != NULL)
+  {
+    printf("%d -> ", root->key); // Print root value
+    preorder(root->left);        // Visit left subtree
+    preorder(root->right);       // Visit right subtree
+  }
+}
+
+// Function for Postorder Traversal (Left -> Right -> Root)
+void postorder(bst *root)
+{
+  if (root != NULL)
+  {
+    postorder(root->left);       // Visit left subtree
+    postorder(root->right);      // Visit right subtree
+    printf("%d -> ", root->key); // Print root value
+  }
+}
+
+// Function to insert a key into the BST
+bst *insert(bst *node, int key)
+{
+  if (node == NULL)
+  {
+    return newNode(key); // If tree is empty, create a new node
+  }
+  if (key < node->key)
+  {
+    node->left = insert(node->left, key); // Insert in left subtree
+  }
+  else if (key > node->key)
+  {
+    node->right = insert(node->right, key); // Insert in right subtree
+  }
+  return node; // Return the updated root
+}
+
+// Function to find the inorder successor (smallest node in right subtree)
+bst *minValueNode(bst *root)
+{
+  bst *current = root;
+  while (current && current->left != NULL)
+    current = current->left;
+  return current;
+}
+
+// Function to delete a node from BST
+bst *deletenode(bst *root, int key)
 {
   if (root == NULL)
-  {
-    return createNode(data); // यदि root खाली छ भने नयाँ node बनाउने
-  }
+    return root; // If tree is empty, return
 
-  if (data < root->data)
+  if (key < root->key)
   {
-    root->left = insert(root->left, data); // Data सानो छ भने left मा insert
+    root->left = deletenode(root->left, key); // Move to left subtree
   }
-  else if (data > root->data)
+  else if (key > root->key)
   {
-    root->right = insert(root->right, data); // Data ठूलो छ भने right मा insert
+    root->right = deletenode(root->right, key); // Move to right subtree
   }
-
-  return root; // Root unchanged फर्काउने
-}
-
-// Inorder Traversal (Left → Root → Right)
-void inorder(struct Node *root)
-{
-  if (root != NULL)
-  {
-    inorder(root->left);       // Left subtree visit
-    printf("%d ", root->data); // Root print
-    inorder(root->right);      // Right subtree visit
-  }
-}
-
-// Preorder Traversal (Root → Left → Right)
-void preorder(struct Node *root)
-{
-  if (root != NULL)
-  {
-    printf("%d ", root->data); // Root print
-    preorder(root->left);      // Left subtree visit
-    preorder(root->right);     // Right subtree visit
-  }
-}
-
-// Postorder Traversal (Left → Right → Root)
-void postorder(struct Node *root)
-{
-  if (root != NULL)
-  {
-    postorder(root->left);     // Left subtree visit
-    postorder(root->right);    // Right subtree visit
-    printf("%d ", root->data); // Root print
-  }
-}
-
-// BST बाट node delete गर्ने function
-struct Node *deleteNode(struct Node *root, int key)
-{
-  if (root == NULL)
-  {
-    return root; // खाली भए return
-  }
-
-  // Key सानो छ भने left subtree मा खोज्ने
-  if (key < root->data)
-  {
-    root->left = deleteNode(root->left, key);
-  }
-  // Key ठूलो छ भने right subtree मा खोज्ने
-  else if (key > root->data)
-  {
-    root->right = deleteNode(root->right, key);
-  }
-  // Found the node to delete
   else
   {
-    // Case 1: No child / One child (left)
+    // Node to be deleted found
     if (root->left == NULL)
     {
-      struct Node *temp = root->right;
-      free(root);
+      bst *temp = root->right;
+      free(root); // Delete node with only right child or no child
       return temp;
     }
-    // Case 2: One child (right)
-    else if (root->right == NULL)
+    if (root->right == NULL)
     {
-      struct Node *temp = root->left;
-      free(root);
+      bst *temp = root->left;
+      free(root); // Delete node with only left child or no child
       return temp;
     }
 
-    // Case 3: Two children - inorder successor find गर्ने
-    struct Node *temp = root->right;
-    while (temp->left != NULL)
-    {
-      temp = temp->left;
-    }
-
-    root->data = temp->data;                           // Successor को value राख्ने
-    root->right = deleteNode(root->right, temp->data); // Successor लाई delete गर्ने
+    // Node with two children: get the inorder successor
+    bst *temp = minValueNode(root->right);
+    root->key = temp->key;                            // Copy successor's key
+    root->right = deletenode(root->right, temp->key); // Delete successor
   }
 
-  return root;
+  return root; // Return updated root
 }
 
 int main()
 {
-  struct Node *root = NULL; // BST को root node
+  bst *root = NULL;
 
-  // BST मा nodes insert गर्ने
-  int nodes[] = {10, 20, 15, 5, 30, 8, 3};
-  int n = sizeof(nodes) / sizeof(nodes[0]);
+  // Insert nodes into BST
+  root = insert(root, 10);
+  root = insert(root, 20);
+  root = insert(root, 15);
+  root = insert(root, 5);
+  root = insert(root, 30);
+  root = insert(root, 8);
+  root = insert(root, 3);
 
-  for (int i = 0; i < n; i++)
-  {
-    root = insert(root, nodes[i]);
-  }
-
+  // Perform Traversals
   printf("Inorder Traversal: ");
   inorder(root);
   printf("\n");
@@ -171,11 +168,9 @@ int main()
   postorder(root);
   printf("\n");
 
-  // BST बाट node delete गर्ने
-  printf("\nDeleting Node 20...\n");
-  root = deleteNode(root, 20);
-
-  printf("Inorder Traversal after Deletion: ");
+  // Delete a node and perform traversal again
+  printf("Inorder Traversal after deleting node 8: ");
+  root = deletenode(root, 8);
   inorder(root);
   printf("\n");
 
