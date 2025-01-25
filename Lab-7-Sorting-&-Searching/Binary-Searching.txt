@@ -1,0 +1,31 @@
+#Binary Search (Searching Algorithm)
+
+Binary Search भनेको sorted array मा एकदम efficient तरीका हो कुनै element खोज्न।
+
+--> Binary Search कसरी काम गर्छ?
+
+1. Array sorted हुनुपर्छ।
+2. Start र End pointers initialize गर्ने।
+
+3. बीचको element (mid) check गर्ने:
+	यदि target == mid: Found।
+	यदि target < mid: Left part मा खोज्ने।
+	यदि target > mid: Right part मा खोज्ने।
+
+4. Steps repeat गर्दा pointer cross भए भने target छैन भन्न सकिन्छ।
+
+
+Example:
+Sorted array: {3, 9, 10, 27, 38, 43, 82}
+
+Target: 27
+
+1. Initial pointers: start = 0, end = 6।
+2. Mid index: (0 + 6)/2 = 3।
+	Array[3] = 27।
+	Target भेटियो!
+
+#Advantages of Binary Search:
+1. Time Complexity: O(logn)।
+2. Faster than linear search।
+3. Large datasets को लागि efficient।

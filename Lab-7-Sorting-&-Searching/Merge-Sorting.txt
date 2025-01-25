@@ -1,0 +1,41 @@
+#Merge Sort (Sorting Algorithm)
+
+Merge Sort भनेको एउटा Divide and Conquer method हो, जसले ठूलो array लाई स-साना भागमा बाँडेर sort गर्छ। 
+अन्त्यमा, sorted भागहरू merge गरेर sorted array बनाइन्छ।
+
+1. Merge Sort कसरी काम गर्छ?
+
+--> Divide: 
+Array लाई बीचबाट दुई भागमा बाँड्ने।
+जति सम्म array को size 1 नहुन्छ, त्यति सम्म यसलाई स-साना भागमा divide गरिराख्ने।
+
+--> Conquer: 
+Sub-arrays लाई recursive रूपमा sort गर्ने।
+
+--> Merge: 
+Sorted sub-arrays लाई combine गरेर sorted array बनाउने।
+
+
+Example:
+
+Suppose हाम्रो array छ {38, 27, 43, 3, 9, 82, 10}।
+
+यसलाई दुई भागमा divide गर्छौं: {38, 27, 43, 3} र {9, 82, 10}
+
+प्रत्येक भागलाई फेरी divide: {38, 27} र {43, 3} | {9, 82} र {10}।
+
+Sort गर्ने: {27, 38}, {3, 43} | {9, 82}, {10}।
+
+Merge गर्ने: {3, 27, 38, 43} | {9, 10, 82}।
+
+अन्त्यमा, पुरा sorted array: {3, 9, 10, 27, 38, 43, 82}।
+
+
+#Advantages of Merge Sort:
+
+1.Time Complexity: 
+O(nlogn) सबै केसमा।
+
+2. Stable Sorting: Equal elements को order change हुँदैन।
+
+3. Large datasets को लागि efficient।

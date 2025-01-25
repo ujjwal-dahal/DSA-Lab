@@ -1,6 +1,5 @@
 /*
 Lab 7 : Implementation of Merge Sort & Implementation of Binary Search
-
 */
 
 #include <stdio.h>
